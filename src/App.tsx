@@ -2,7 +2,16 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import { whatIsYourDate, createDayList } from "./Dates/"
+
+
 function App() {
+
+  const info = whatIsYourDate('en-EN');
+  console.log(info);
+
+  console.log(createDayList(info.start.weekday, info.end.day));
+
   return (
     <div className="App">
       <header className="App-header">
