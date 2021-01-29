@@ -1,38 +1,100 @@
-.App {
-  text-align: center;
+#root {
+    min-width: 750px;
+    min-height: 450px;
+    backdrop-filter: var(--blur-filter);
+    position: relative;
+    z-index: 100;
+    box-shadow: var(--drop-shadow);
+    background: var(--bg-glas);
+    padding: 4rem;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.flex {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.border {
+    border: var(--border-glas);
+    border-radius: var(--border-radius);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.card-container {
+    min-height: 10rem;
+    background-color: white;
+    background: var(--bg-glas);
+    backdrop-filter: var(--blur-filter);
+    padding: 1rem;
 }
 
-.App-link {
-  color: #61dafb;
+.output {
+    padding: 0rem 1rem 1rem 2rem;
+    color: var(--font-output);
+    position: relative;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.legend {
+    padding: 0rem 1rem;
+    z-index: -1;
+}
+
+.label {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--font-color-label);
+}
+
+.datepicker {
+    padding: 0.5rem;
+    padding-left: 2rem;
+    padding-right: 8rem;
+    color: var(--font-output);
+    background: var(--bg-color);
+    position: relative;
+    font-size: 1rem;
+}
+
+.datepicker--button {
+    position: absolute;
+    height: 2.68rem;
+    width: 2.68rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    outline: none;
+}
+
+.datepicker--button-choose {
+    top: 0rem;
+    right: 0rem;
+}
+
+.custom-selectbox {
+    position: absolute;
+    z-index: 50;
+    bottom: -16.5rem;
+    right: 0;
+    background: var(--bg-color);
+    color: var(--font-output);
+    padding: 1rem;
+    text-align: center;
+}
+
+.date-header {
+    letter-spacing: 0.2rem;
+}
+
+.date-table {
+    padding: 0.2rem;
+}
+
+.date-table th {
+    padding: 0.2rem 0.5rem;
+}
+
+.date-table td:hover {
+    background-color: var(--bg-cell);
+    cursor: pointer;
 }
