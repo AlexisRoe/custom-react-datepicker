@@ -1,4 +1,4 @@
-export interface Info {
+interface Info {
     actualDate: Date,
     today: {
         year: number
@@ -16,3 +16,5 @@ export interface Info {
         weekday: number
     }
 }
+
+export default Info

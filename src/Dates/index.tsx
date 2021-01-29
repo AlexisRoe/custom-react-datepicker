@@ -1,7 +1,6 @@
-import { Info } from "../interface/Info";
+import { Info, calendar } from "../interface/";
 
-export const whatIsYourDate = (format: string): Info => {
-    const actualDate = new Date();
+export const whatIsYourDate = (format: string, actualDate: Date): Info => {
     const actualYear = actualDate.getFullYear();
     const actualMonth = actualDate.getMonth();
     const firstDayOfMonth = new Date(actualYear, actualMonth, 1);
@@ -27,22 +26,8 @@ export const whatIsYourDate = (format: string): Info => {
     }
 };
 
-export const createDayList = (start: number, end: number): (number | null)[] => {
 
-    const dayList: (number | null)[] = [...new Array(42)].map((day, index) => {
-        if (index < start) {
-            return null;
-        } else if (index > (end + start - 1)) {
-            return null;
-        } else {
-            return (index - start + 1);
-        }
-    })
-
-    return dayList
-}
-
-export const listDaysShort = (format: string): string[] => {
+export const createTableHeader = (format: string): string[] => {
 
     switch (format) {
         case "de-DE":
@@ -50,4 +35,30 @@ export const listDaysShort = (format: string): string[] => {
         default:
             return ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
     }
+}
+
+// works only with american calendar (starting on sunday)
+export const createTableBody = (start: number, end: number): calendar => {
+
+    const date = (index: number) => {
+        if (index < start) {
+            return null;
+        } else if (index > (end + start - 1)) {
+            return null;
+        } else {
+            return (index - start + 1);
+        }
+    }
+
+    const result: any = {};
+
+    for (let j = 0; j < 6; j++) {
+        const row: (number | null)[] = [];
+        for (let i = (j * 7); i < ((j * 7) + 7); i++) {
+            row.push(date(i))
+        }
+        result[`row0${j + 1}`] = row;
+    }
+
+    return result
 }

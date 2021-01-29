@@ -1,34 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-
-import { whatIsYourDate, createDayList } from "./Dates/"
+import { whatIsYourDate, createTableHeader, createTableBody} from "./Dates/"
 
 
 function App() {
 
-  const info = whatIsYourDate('en-EN');
-  console.log(info);
+  const info = whatIsYourDate('en-EN', new Date());
+  const Calendar = createTableBody(info.start.weekday, info.end.day);
 
-  console.log(createDayList(info.start.weekday, info.end.day));
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h3>{info.today.month}</h3>
+      <table>
+        <thead>
+          <tr>
+            {createTableHeader('en-EN').map(day => {
+              return <th key={day}>{day}</th>
+            })}
+          </tr>
+        </thead>
+        <tbody>
+          {Object.values(Calendar).map((row: (number|null)[], index: number) => {
+            return (
+              <tr key={Object.keys(Calendar)[index]}>
+                {row.map((day: any, index: number) => {
+                  return (
+                    <td key={index}>{day}</td>
+                  )
+                })}
+              </tr>
+            )
+          })}
+        </tbody>
+      </table>
+    </>
   );
 }
 
